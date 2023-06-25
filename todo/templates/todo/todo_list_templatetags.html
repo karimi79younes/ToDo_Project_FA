@@ -1,0 +1,56 @@
+{% load humanize %}
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+        
+    </div>
+    <!-- Card Body -->
+    <div class="card-body text-center">
+        {% if latest_todos %}
+            <div class="table-responsive rounded">
+                <table class="table table-hover">
+                    <thead class="text-white bg-info">
+                        <tr>
+                            <th scope="col">عنوان</th>
+                            <th scope="col">
+                                {{ theader }}
+                            </th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody class="sfont">
+                        {% for todo in latest_todos %}
+                            <tr {% if todo.important %} class="table-danger"{% endif %}>
+                                <td>{{ todo.title }}</td>
+                                {% if todo.created %}
+                                    <td>{{ todo.created|naturaltime }}</td>
+                                {% else %}
+                                    <td>{{ todo.datecomplete|naturaltime }}</td>
+                                {% endif %}
+                                <td>
+                                    {% if not todo.datecomplete %}
+                                        <a class="btn btn-sm btn-primary font-weight-bold mb-2 mb-md-0" href="{% url 'todo:todo_update' todo.pk %}" style="padding: 5px 15px;">ویرایش</a>
+                                    {% endif %}
+                                        <a class="btn btn-sm btn-danger font-weight-bold mb-2 mb-md-0 " href="{% url 'todo:todo_delete' todo.pk %}" style="padding: 5px 20px;">حذف</a>
+                                    {% if todo.datecomplete is None %}
+                                        <form class="d-inline " method="POST" action="{% url 'todo:completetodo' todo.pk %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-success btn-sm font-weight-bold mb-2 mb-md-0" id="complete" type="submit" style="padding: 5px 18px;">تکمیل</button>
+                                        </form>
+                                    {% else %}
+                                        <a href="#" class="disabled btn btn-info btn-sm font-weight-bold mb-2 mb-md-0" style="padding: 5px 10px;"><span>کامل شد</span></a>
+                                    {% endif %}
+                                </td>
+                            </tr>                                                  
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                <span>{{ alert }}</span>
+            </div>
+        {% endif %}
+    </div>
+</div>
