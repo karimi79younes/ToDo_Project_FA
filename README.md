@@ -6,15 +6,15 @@
 To run ToDo project in development mode; Just use steps below:
 
 1. Install `python3`, `pip`, `virtualenv` in your system.
-2. Clone the project `https://github.com/ysnalpr/ToDo_Project_FA.git`.
+2. Clone the project `https://github.com/karimi79younes/ToDo_Project_FA.git`.
 3. Make development environment ready using commands below;
 
   ```bash
-  git clone https://github.com/ysnalpr/ToDo_Project_FA.git && cd todoproject
+  git clone https://github.com/karimi79younes/ToDo_Project_FA.git && cd todoproject
   virtualenv -p python3 env  # Create virtualenv named env
   source env/bin/activate
   pip install -r requirements.txt
-  mv .env-sample .env # Write your own project detail in .env file
+  mv .env-smaple .env # Write your own project detail in .env file
   python3 manage.py makemigrations
   python3 manage.py migrate  # Create database tables
   ```
@@ -26,7 +26,7 @@ To run ToDo project in development mode; Just use steps below:
 
 If You're On A Windows Machine , Make Environment Ready By Following Steps Below:
 1. Install `python2`, `pip`, `virtualenv` 
-2. Clone the project using:  `https://github.com/ysnalpr/ToDo_Project_FA.git`.
+2. Clone the project using:  `https://github.com/karimi79younes/ToDo_Project_FA.git`.
 3. Make Environment Ready Like This:
   ``` Command Prompt
   cd todoproject
